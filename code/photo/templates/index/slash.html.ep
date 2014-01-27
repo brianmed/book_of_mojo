@@ -50,17 +50,20 @@
             <ul data-role="listview">
             <li><a data-rel=dialog href="/upload">
                 <h2>No pictures</h2>
-                <p class="ui-li-desc" style="white-space: normal;">Please upload a photo.</p>
+                <p class="ui-li-desc" style="white-space: normal;">
+                Please upload a photo.</p>
             </a></li>
             </ul>
         % } else {
-            <ul data-role="listview" data-inset="true">
-                <li><a href="#">
-                    <img src="../_assets/img/album-bb.jpg">
-                <h2>Broken Bells</h2>
-                <p>Broken Bells</p></a>
-                </li>
-            </ul>
+            % for my $photo (@$photos) {
+                <ul data-role="listview" data-inset="true">
+                    <li><a href="#">
+                        <img src="/photos/$$photo{img}">
+                    <h2>$$photo{name}</h2>
+                    <p>$$photo{desc}</p></a>
+                    </li>
+                </ul>
+            % }
         % }
     </div><!-- /content -->
 
