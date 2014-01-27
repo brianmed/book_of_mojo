@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/jquery.mobile-1.4.0.min.css" />
+    <link href="/jquery.mobile.message.css" rel="stylesheet" type="text/css" />
+
+    <script src="/jquery-1.9.1.min.js"></script>
+        <script>
+            $(document).bind("mobileinit", function(){
+                  $.mobile.ajaxEnabled = false;
+             });
+        </script>
+    <script src="/jquery.mobile-1.4.0.min.js"></script>
+    <script type="text/javascript" src="/jquery.mobile.message.js"></script>
+</head>
+<body>
+
+<div data-role="page">
+
+    <div data-role="header">
+        <h1>Photo</h1>
+        
+        % if (stash "errors") {
+            <div id="errors"> <%= stash "errors" %> </div>
+        
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#errors").message({ type: "error" });
+                });
+            </script>
+        % }
+        
+        % if (stash "info") {
+            <div id="info"> <%= stash "info" %> </div>
+        
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#info").message();
+                });
+            </script>
+        % }
+    </div><!-- /header -->
+
+    <div data-role="content">
+        % unless (stash "pics") {
+            <ul data-role="listview">
+            <li><a data-rel=dialog href="/upload">
+                <h2>No pictures</h2>
+                <p class="ui-li-desc" style="white-space: normal;">Please upload a photo.</p>
+            </a></li>
+            </ul>
+        % } else {
+            <ul data-role="listview" data-inset="true">
+                <li><a href="#">
+                    <img src="../_assets/img/album-bb.jpg">
+                <h2>Broken Bells</h2>
+                <p>Broken Bells</p></a>
+                </li>
+            </ul>
+        % }
+    </div><!-- /content -->
+
+    <div data-role="footer" data-id="foo1" data-position="fixed">
+    <div data-role="navbar">
+        <ul>
+            <li><a href="/upload">Upload</a></li>
+        </ul>
+    </div><!-- /navbar -->
+</div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>
